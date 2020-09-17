@@ -1,0 +1,96 @@
+<div class='card'>
+    <div class="card-header">
+        {{tituloPagina}}
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <!-- <div class="col-md-2">Filtrar por: </div>-->
+            <div class="col-md-12">
+                <!-- <input [(ngModel)] = "filtro" type="text" /> -->
+                <po-input [(ngModel)]="filtro"
+                          name="filtro"
+                          p-label="Filtrar por"> </po-input>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Filtrado por:{{filtro}} </h4>
+        </div>
+    </div>
+
+    <po-table [p-columns]="tableColumns"
+              [p-items]="alunosFiltrados"
+              p-sort="false"
+              p-striped="false">
+
+            <!--
+        <ng-template p-table-column-template
+                     [p-property]="urlFoto"
+                     let-value>
+            <img src='value'
+                 [style.width.px]='fotoWidth'
+                 [style.margin.px]='fotoMargin'>
+        </ng-template> -->
+
+        <ng-template p-table-cell-template
+                     let-column="column"
+                     let-row="row">
+            <edu-avaliacao [avaliacao]='row.avaliacao'
+                           (notificacao)="onNotificacao($event)">
+            </edu-avaliacao>
+        </ng-template>
+
+    </po-table>
+
+
+
+    <div class="table-responsive">
+        <table class="table"
+               *ngIf="alunosFiltrados && alunosFiltrados.length">
+            <thead>
+                <tr>
+                    <th>
+                        <button class="btn btn-primary"
+                                (click)="mostrarImagem()">
+                            {{getTextoBotaoTipoAcao()}}
+                        </button>
+                    </th>
+                    <th>RA</th>
+                    <th>Nome</th>
+                    <th>Período</th>
+                    <th>Disciplina</th>
+                    <th>Nota</th>
+                    <th>Avaliação</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let aluno of alunosFiltrados'>
+                    <td><img [src]='aluno.urlFoto'
+                             [title]='aluno.nome'
+                             [style.width.px]='fotoWidth'
+                             [style.margin.px]='fotoMargin'
+                             *ngIf='exibirFoto'></td>
+                    <!--<td><a [routerLink]="['/alunos', aluno.codPessoa]">{{aluno.ra | uppercase | convertToTrace: ' '}}</a> </td> -->
+                    <td><a [routerLink]="['/alunos', aluno.codPessoa]">{{aluno.ra | uppercase | convertToTrace:' '}}</a>
+                    </td>
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.periodo}}</td>
+                    <td>{{aluno.disciplina}}</td>
+                    <td>{{aluno.nota | number: '1.1-3'}}</td>
+                    <td>
+                        <edu-avaliacao [avaliacao]='aluno.avaliacao'
+                                       (notificacao)="onNotificacao($event)">
+
+                        </edu-avaliacao>
+                    </td>
+                    <!--<td>{{aluno.avaliacao}}</td> -->
+                    <td>{{aluno.valor | currency: 'BRL':'symbol': '1.2-2'}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

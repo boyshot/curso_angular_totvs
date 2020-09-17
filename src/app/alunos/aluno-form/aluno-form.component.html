@@ -1,0 +1,16 @@
+<po-page-edit
+  p-title="AlunoForm"
+  (p-cancel)="cancel()"
+  (p-save)="save()"
+  (p-save-new)="saveNew()">
+
+  <!-- BUILD YOUR FORM HERE -->
+  <po-input
+      class="po-md-6"
+      [(ngModel)]="aluno.nome"
+      p-label="Nome">
+  </po-input>
+
+
+
+</po-page-edit>

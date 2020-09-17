@@ -1,0 +1,11 @@
+<div class='card' *ngIf='aluno'>
+    <div class='card-header'>
+      {{tituloPagina + ': ' + aluno?.nome}}
+    </div>
+
+    <div class="card-footer">
+      <button class="btn btn-outline-secondary" (click)='onBack()'>
+        <i class="fa fa-chevron-left">Voltar</i>
+      </button>
+    </div>
+  </div>
