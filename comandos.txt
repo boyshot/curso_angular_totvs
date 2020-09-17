@@ -1,0 +1,46 @@
+﻿Instalar dependencias do projeto
+
+npm install
+
+Instalar bootstrap
+
+npm install bootstrap font-awesome
+
+
+criar component cli
+
+ng g c alunos/aluno-detail --flat -d
+
+obs: -d é para mapear o que será alterado
+
+criar novo module e associar ele aos alunos
+
+ng g m shared/shared --flat -m alunos/aluno.module -d
+
+/** atualizar angular p/ versão mais atual **/
+ng update @angular/core@8 @angular/cli@8
+
+/**atualizar versao angular mais atual**/
+ng update @angular/core@9 @angular/cli@9
+
+
+/*Adicionar portinari no projeto*/
+ng add @po-ui/ng-components
+
+
+/*cria api fake*/
+npm install json-server
+
+npm install -g json-server
+
+
+/*Api fake Json**/
+json-server --watch src/api/db.json
+
+
+/**Instalação de PO Templates**/
+ng add @po-ui/ng-templates
+
+ng update @angular/core @angular/cli
+
+
